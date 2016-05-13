@@ -1,0 +1,22 @@
+{
+  "name": "rootindex/redmine-lite-cli",
+  "description": "Command line tool for common tasks in Redmine",
+  "type": "project",
+  "minimum-stability": "stable",
+  "license": "proprietary",
+  "authors": [
+    {
+      "name": "Francois Raubenheimer",
+      "email": "fran@fontera.com"
+    }
+  ],
+  "autoload": {
+    "psr-0": {
+      "Redmine": "src/redmine-api/lib/",
+      "RootIndex": "src/redmine-lite/"
+    }
+  },
+  "require": {
+    "symfony/console": "^3.0"
+  }
+}

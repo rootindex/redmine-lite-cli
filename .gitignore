@@ -1,0 +1,6 @@
+# Composer files
+composer.phar
+vendor/
+composer.lock
+config/
+!config/config.ini.dist
