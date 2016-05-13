@@ -18,28 +18,28 @@ extended for your own purposes.
 
 ## Configuration
 
-Move config/config.ini.dist to config/config.ini and edit the 
+Move `config/config.ini.dist` to `config/config.ini` and edit the 
 appropriate settings, Token and Host is required fields.  
 
 ## Commands available
 
 ### Redmine generate sub tickets from json file
 
-`Usage:
+``Usage:
   rl:subs <file>
   
 Arguments:
-  file                  Please specify the json file`
+  file                  Please specify the json file``
   
 ### Log time per ticket
 
-`Usage:
+``Usage:
    rl:time <ticket> <time> []
  
  Arguments:
    ticket                Ticket number [example: 10000 or #10001]
    time                  Time [example: 1d2h3m or 0.15]
-   comment               Custom Comment Auto-log will be over written`
+   comment               Custom Comment Auto-log will be over written``
 
 ## Example task file
 
