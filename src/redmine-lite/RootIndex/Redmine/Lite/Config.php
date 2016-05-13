@@ -63,7 +63,7 @@ class Config
             $proto = $config['redmine.proto'] . '://';
         }
 
-        if(!isset($host) && !empty($host)){
+        if(!isset($host) && empty($host)){
             throw new \Exception(
                 'Please configure your config.ini file!'
             );

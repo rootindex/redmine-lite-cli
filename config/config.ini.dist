@@ -1,0 +1,5 @@
+; Configuration
+redmine.host = "redmine.host"
+redmine.port = ""
+redmine.proto = "https"
+redmine.user.token = ""
