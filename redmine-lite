@@ -5,13 +5,14 @@ define('BP', __DIR__);
 $vendorAutoload = BP . DIRECTORY_SEPARATOR . "vendor/autoload.php";
 
 /** 'composer install' validation **/
-if (file_exists($vendorAutoload)) {
-    require_once $vendorAutoload;
-} else {
+if (!file_exists($vendorAutoload)) {
     throw new \Exception(
         'Vendor autoload is not found. Please run \'composer install\' under application root directory.'
     );
+
 }
 
+require_once $vendorAutoload;
+
 /** Run application */
-new \RootIndex\Redmine\Lite\Application();
+$app = new RootIndex\Redmine\Lite\Application;

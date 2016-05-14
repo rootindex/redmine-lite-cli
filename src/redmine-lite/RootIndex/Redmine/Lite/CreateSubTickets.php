@@ -32,6 +32,7 @@ class CreateSubTickets extends AbstractLiteClass implements CreateInterface
     /**
      * Create tickets
      * @throws \Exception
+     * @SuppressWarnings(PHPMD.NPathComplexity)
      */
     public function create()
     {
@@ -53,9 +54,10 @@ class CreateSubTickets extends AbstractLiteClass implements CreateInterface
                 /** @var \Redmine\Api\SimpleXMLElement $newTicket */
                 $newTicket = $this->createSubTicket($ticket['task'], $parent, $timeRequired);
 
-                $this->output->writeln(
-                    "<info>#{$parentTicketsNumber}</info> :: Created sub-ticket: <comment>#{$newTicket->id}</comment> :: {$ticket['task']} "
-                );
+                $userNotice = "<info>#{$parentTicketsNumber}</info> :: "
+                    . "Created sub-ticket: <comment>#{$newTicket->id}</comment> :: {$ticket['task']} ";
+
+                $this->output->writeln($userNotice);
 
                 if ($timeSpend) {
                     $this->createTimeLogEntry($newTicket->id, $timeSpend);

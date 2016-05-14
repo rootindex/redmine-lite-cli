@@ -84,15 +84,13 @@ class ListIssuesCommand extends Command
                     'name' => $issue['subject'],
                 ];
             }
-        }
-        $issues = $tableIssues;
-
-        if (!empty($issues)) {
-            $table = new Table($output);
-            $table
-                ->setHeaders(array_keys($issues['0']))
-                ->setRows($issues);
-            $table->render();
+            if (!empty($tableIssues)) {
+                $table = new Table($output);
+                $table
+                    ->setHeaders(array_keys($tableIssues['0']))
+                    ->setRows($tableIssues);
+                $table->render();
+            }
         }
     }
 }

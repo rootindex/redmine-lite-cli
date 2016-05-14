@@ -13,7 +13,7 @@ class ListProjects extends AbstractLiteClass
             'include' => 'trackers'
         ];
 
-        if(isset($limit) && is_numeric($limit)){
+        if (isset($limit) && is_numeric($limit)) {
             $arguments['limit'] = $limit;
         }
 

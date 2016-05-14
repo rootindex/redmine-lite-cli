@@ -26,13 +26,13 @@ class Application extends \Symfony\Component\Console\Application
      */
     public function getCommands()
     {
+        $commands = [];
         $directory = __DIR__ . DIRECTORY_SEPARATOR . 'Console' . DIRECTORY_SEPARATOR . 'Command';
         $directory = new \RecursiveDirectoryIterator($directory);
         $flatFiles = new \RecursiveIteratorIterator($directory);
-        $availableCommandFiles = new \RegexIterator($flatFiles, '/\.(?:php)$/');
+        $cmdFiles = new \RegexIterator($flatFiles, '/\.(?:php)$/');
 
-        $commands = [];
-        foreach ($availableCommandFiles as $file) {
+        foreach ($cmdFiles as $file) {
             $commandClassName = 'RootIndex\\Redmine\\Lite\Console\\Command\\' . \basename($file, '.php');
             $commands[] = new $commandClassName;
         }

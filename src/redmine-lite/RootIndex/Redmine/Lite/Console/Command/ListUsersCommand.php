@@ -38,7 +38,6 @@ class ListUsersCommand extends Command
 
         if (isset($users['users'])) {
             $tableUsers = [];
-
             foreach ($users['users'] as $key => $user) {
                 // new table layout
                 $tableUsers[$key] = [
@@ -48,15 +47,14 @@ class ListUsersCommand extends Command
                     'email' => $user['mail'],
                 ];
             }
-        }
-        $users = $tableUsers;
 
-        if (!empty($users)) {
-            $table = new Table($output);
-            $table
-                ->setHeaders(array_keys($users['0']))
-                ->setRows($users);
-            $table->render();
+            if (!empty($tableUsers)) {
+                $table = new Table($output);
+                $table
+                    ->setHeaders(array_keys($tableUsers['0']))
+                    ->setRows($tableUsers);
+                $table->render();
+            }
         }
     }
 }

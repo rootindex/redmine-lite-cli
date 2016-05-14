@@ -36,13 +36,12 @@ class SubTicketsExampleCommand extends Command
             try {
                 file_put_contents($fileName, $json);
                 $output->writeln("Saved example file: <comment>{$fileName}</comment>");
-
-            } catch (\Exception $e){
+            } catch (\Exception $e) {
                 throw new \Exception($e);
             }
         }
 
-        if(!$fileName){
+        if (!$fileName) {
             $output->writeln('<comment>Example json:</comment>');
             $output->writeln($json);
         }

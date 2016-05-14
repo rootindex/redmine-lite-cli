@@ -24,7 +24,7 @@ abstract class AbstractLiteClass implements LiteClassInterface
      */
     public function getConfig()
     {
-        if(!$this->config){
+        if (!$this->config) {
             $this->config = new Config;
         }
         return $this->config;
@@ -36,7 +36,7 @@ abstract class AbstractLiteClass implements LiteClassInterface
      */
     public function getClient()
     {
-        if(!$this->client){
+        if (!$this->client) {
             $config = $this->getConfig();
             $this->client = new Client($config->getRedmineUrl(), $config->getAccessToken());
         }
@@ -46,10 +46,11 @@ abstract class AbstractLiteClass implements LiteClassInterface
     /**
      * @param $ticketId
      * @param $time
+     * @param $comment
      * @return \Redmine\Api\SimpleXMLElement
      * @throws \Exception
      */
-    public function createTimeLogEntry($ticketId, $time, $comment=false)
+    public function createTimeLogEntry($ticketId, $time, $comment = false)
     {
         $client = $this->getClient();
         $ticket = $this->getTicket($ticketId);
@@ -61,7 +62,7 @@ abstract class AbstractLiteClass implements LiteClassInterface
             'comments' => "Auto-log: #{$ticketId}",
         ];
 
-        if($comment){
+        if ($comment) {
             $timeEntry['comments'] = "#{$ticketId} {$comment}";
         }
 
@@ -95,7 +96,7 @@ abstract class AbstractLiteClass implements LiteClassInterface
      * @param null $estimate
      * @return \Redmine\Api\SimpleXMLElement
      */
-    public function createSubTicket($title = '', $parent, $estimate = null)
+    public function createSubTicket($title, $parent, $estimate = null)
     {
         $client = $this->getClient();
 
