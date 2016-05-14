@@ -17,11 +17,6 @@ class ListIssuesCommand extends Command
     private $issuesFactory;
 
     /**
-     * @var
-     */
-    private $currentUserId;
-
-    /**
      * ListIssuesCommand constructor.
      */
     public function __construct()
@@ -38,7 +33,7 @@ class ListIssuesCommand extends Command
         $this
             ->setName('issues')
             ->setAliases(['tickets'])
-            ->setDescription('List issues available on system (default to your tickets)')
+            ->setDescription('List issues available on system')
             ->addArgument(
                 'user',
                 InputArgument::OPTIONAL,
@@ -98,16 +93,6 @@ class ListIssuesCommand extends Command
                 ->setHeaders(array_keys($issues['0']))
                 ->setRows($issues);
             $table->render();
-        }
-    }
-
-    /**
-     * Get current user on redmine
-     */
-    private function getCurrentUserId()
-    {
-        if (!$this->currentUserId) {
-            $this->currentUserId = $this->issuesFactory->getCurrentUserId();
         }
     }
 }

@@ -20,10 +20,10 @@ class CreateSubTicketsCommand extends Command
     protected function configure()
     {
         $this
-            ->setName('sub-tickets')
+            ->setName('subs')
             ->setDescription('Generate sub tickets from json file')
             ->addArgument(
-                'file',
+                'json-file',
                 InputArgument::REQUIRED,
                 'Please specify the json file'
             );
@@ -34,7 +34,7 @@ class CreateSubTicketsCommand extends Command
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $file = $input->getArgument('file');
+        $file = $input->getArgument('json-file');
         // safety check
         if ($file) {
             $create = new CreateSubTickets($file, $output);
