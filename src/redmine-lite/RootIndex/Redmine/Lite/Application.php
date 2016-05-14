@@ -9,7 +9,7 @@ namespace RootIndex\Redmine\Lite;
 class Application extends \Symfony\Component\Console\Application
 {
     const NAME = 'Redmine Lite CLI Tools';
-    const VERSION = '1.1.0';
+    const VERSION = '1.2.3';
 
     /**
      * Application constructor.
