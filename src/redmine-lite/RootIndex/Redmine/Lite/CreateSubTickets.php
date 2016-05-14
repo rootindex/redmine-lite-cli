@@ -51,7 +51,7 @@ class CreateSubTickets extends AbstractLiteClass implements CreateInterface
                 $timeSpend = isset($time[1]) ? $time[1] : null;
 
                 /** @var \Redmine\Api\SimpleXMLElement $newTicket */
-                $newTicket = $this->createTicket($ticket['task'], $parent, $timeRequired);
+                $newTicket = $this->createSubTicket($ticket['task'], $parent, $timeRequired);
 
                 $this->output->writeln(
                     "<info>#{$parentTicketsNumber}</info> :: Created sub-ticket: <comment>#{$newTicket->id}</comment> :: {$ticket['task']} "

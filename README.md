@@ -74,6 +74,6 @@ File name does not matter as long as it is in json format
 
 * Change configuration file loader, perhaps move to ~/.redmine-lite.yml
 * Remove second ticket getter on successful creation
-* Add project listing, user listing and comments on tickets
+* Add ~~project listing~~, ~~user listing~~ and comments on tickets
 * Add media inclusion `!media.jpg!` after attachment upload
 * Write tests

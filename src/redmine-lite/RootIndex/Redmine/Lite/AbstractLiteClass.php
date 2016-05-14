@@ -95,7 +95,7 @@ abstract class AbstractLiteClass implements LiteClassInterface
      * @param null $estimate
      * @return \Redmine\Api\SimpleXMLElement
      */
-    public function createTicket($title = '', $parent, $estimate = null)
+    public function createSubTicket($title = '', $parent, $estimate = null)
     {
         $client = $this->getClient();
 

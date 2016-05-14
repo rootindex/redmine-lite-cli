@@ -21,7 +21,7 @@ class CreateSubTicketsCommand extends Command
     {
         $this
             ->setName('sub-tickets')
-            ->setDescription('Redmine generate sub tickets from json file')
+            ->setDescription('Generate sub tickets from json file')
             ->addArgument(
                 'file',
                 InputArgument::REQUIRED,

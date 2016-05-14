@@ -4,7 +4,7 @@
 define('BP', __DIR__);
 $vendorAutoload = BP . DIRECTORY_SEPARATOR . "vendor/autoload.php";
 
-/* 'composer install' validation */
+/** 'composer install' validation **/
 if (file_exists($vendorAutoload)) {
     require_once $vendorAutoload;
 } else {
@@ -13,14 +13,5 @@ if (file_exists($vendorAutoload)) {
     );
 }
 
-$application = new \Symfony\Component\Console\Application;
-$application->setName('Redmine Lite CLI Tools');
-$application->addCommands(
-    [
-        new \RootIndex\Redmine\Lite\Console\Command\CreateSubTicketsCommand,
-        new \RootIndex\Redmine\Lite\Console\Command\CreateTimeLogEntryCommand,
-        new \RootIndex\Redmine\Lite\Console\Command\ListUsersCommand,
-        new \RootIndex\Redmine\Lite\Console\Command\ListProjectsCommand,
-    ]
-);
-$application->run();
+/** Run application */
+new \RootIndex\Redmine\Lite\Application();
