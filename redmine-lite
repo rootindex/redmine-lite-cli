@@ -15,6 +15,12 @@ if (file_exists($vendorAutoload)) {
 
 $application = new \Symfony\Component\Console\Application;
 $application->setName('Redmine Lite CLI Tools');
-$application->add(new \RootIndex\Redmine\Lite\Console\Command\CreateSubTicketsCommand);
-$application->add(new \RootIndex\Redmine\Lite\Console\Command\CreateTimeLogEntryCommand);
+$application->addCommands(
+    [
+        new \RootIndex\Redmine\Lite\Console\Command\CreateSubTicketsCommand,
+        new \RootIndex\Redmine\Lite\Console\Command\CreateTimeLogEntryCommand,
+        new \RootIndex\Redmine\Lite\Console\Command\ListUsersCommand,
+        new \RootIndex\Redmine\Lite\Console\Command\ListProjectsCommand,
+    ]
+);
 $application->run();

@@ -20,7 +20,7 @@ class CreateSubTicketsCommand extends Command
     protected function configure()
     {
         $this
-            ->setName('rl:subs')
+            ->setName('sub-tickets')
             ->setDescription('Redmine generate sub tickets from json file')
             ->addArgument(
                 'file',

@@ -20,7 +20,7 @@ class CreateTimeLogEntryCommand extends Command
     protected function configure()
     {
         $this
-            ->setName('rl:time')
+            ->setName('log-time')
             ->setDescription('Log time per ticket')
             ->addArgument(
                 'ticket',
@@ -32,8 +32,9 @@ class CreateTimeLogEntryCommand extends Command
                 InputArgument::REQUIRED,
                 'Time <comment>[example: 1d2h3m or 0.15]</comment>'
             )
-            ->addArgument(
+            ->addOption(
                 'comment',
+                '-c',
                 InputArgument::OPTIONAL,
                 'Custom Comment Auto-log will be over written'
             );
@@ -46,7 +47,7 @@ class CreateTimeLogEntryCommand extends Command
     {
         $ticket = $input->getArgument('ticket');
         $time = $input->getArgument('time');
-        $comment = $input->getArgument('comment');
+        $comment = $input->getOption('comment');
         // safety check
         if ($ticket && $time) {
             $create = new CreateTimeLogEntry($ticket, $time, $comment, $output);
