@@ -3,11 +3,15 @@
 namespace RootIndex\Redmine\Lite;
 
 /**
- * Class Config
+ * Class Configuration
  * @package RootIndex\Redmine\Lite
  */
-class Config extends ConfigureConfig
+class Configuration
 {
+    /**
+     * configuration file name
+     */
+    const FILE = '.redmine-lite';
 
     /**
      * @var array
@@ -15,11 +19,35 @@ class Config extends ConfigureConfig
     private $config;
 
     /**
-     * Config constructor.
+     * Configuration constructor.
      */
     public function __construct()
     {
         $this->config = $this->getConfig();
+    }
+
+    /**
+     * @return string
+     */
+    public function getConfigFile()
+    {
+        return \getenv('HOME') . DIRECTORY_SEPARATOR . self::FILE;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isConfigured()
+    {
+        return \file_exists($this->getConfigFile());
+    }
+
+    /**
+     * @param $configs
+     */
+    public function save($configs)
+    {
+        \file_put_contents($this->getConfigFile(), \json_encode($configs));
     }
 
     /**
@@ -33,23 +61,10 @@ class Config extends ConfigureConfig
 
     /**
      * @return string
-     * @throws \Exception
      */
     public function getRedmineUrl()
     {
-        $server = '';
-        $config = $this->config;
-
-        if (isset($config['server'])) {
-            $server = $config['server'];
-        }
-
-        if (!isset($server) && empty($server)) {
-            throw new \Exception(
-                'Please re-configure setup run configure!'
-            );
-        }
-        return $server;
+        return isset($this->config['server']) ? (string)$this->config['server'] : '';
     }
 
     /**

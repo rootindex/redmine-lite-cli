@@ -20,12 +20,12 @@ abstract class AbstractLiteClass implements LiteClassInterface
     protected $client;
 
     /**
-     * @return Config
+     * @return Configuration
      */
     public function getConfig()
     {
         if (!$this->config) {
-            $this->config = new Config;
+            $this->config = new Configuration;
         }
         return $this->config;
     }

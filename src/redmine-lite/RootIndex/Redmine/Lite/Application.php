@@ -2,7 +2,7 @@
 
 namespace RootIndex\Redmine\Lite;
 
-use RootIndex\Redmine\Lite\ConfigureConfig as Configuration;
+use RootIndex\Redmine\Lite\Configuration;
 use RootIndex\Redmine\Lite\Console\Command\ConfigureCommand;
 
 /**
@@ -12,7 +12,7 @@ use RootIndex\Redmine\Lite\Console\Command\ConfigureCommand;
 class Application extends \Symfony\Component\Console\Application
 {
     const NAME = 'Redmine Lite CLI Tools';
-    const VERSION = '1.3.0';
+    const VERSION = '1.3.1';
 
     /**
      * Application constructor.
