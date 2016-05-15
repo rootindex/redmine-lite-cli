@@ -1,4 +1,7 @@
 <?php
+/**
+ * Copyright (c) 2016 Francois Raubenheimer.
+ */
 
 namespace RootIndex\Redmine\Lite;
 
@@ -39,7 +42,7 @@ class Configuration
      */
     public function isConfigured()
     {
-        return \file_exists($this->getConfigFile());
+        return @\file_exists($this->getConfigFile());
     }
 
     /**
@@ -55,7 +58,7 @@ class Configuration
      */
     protected function getConfig()
     {
-        $json = \file_get_contents($this->getConfigFile());
+        $json = @\file_get_contents($this->getConfigFile());
         return \json_decode($json, true);
     }
 

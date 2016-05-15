@@ -1,5 +1,8 @@
 #!/usr/bin/env php
 <?php
+/**
+ * Copyright (c) 2016 Francois Raubenheimer.
+ */
 
 define('BP', __DIR__);
 $vendorAutoload = BP . DIRECTORY_SEPARATOR . "vendor/autoload.php";

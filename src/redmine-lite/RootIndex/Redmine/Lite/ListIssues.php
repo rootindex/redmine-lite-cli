@@ -1,8 +1,9 @@
 <?php
+/**
+ * Copyright (c) 2016 Francois Raubenheimer.
+ */
 
 namespace RootIndex\Redmine\Lite;
-
-use RootIndex\Redmine\Lite\Issue\Statuses;
 
 /**
  * Class ListIssues
@@ -42,7 +43,7 @@ class ListIssues extends AbstractLiteClass
 
     /**
      * @param $identifier
-     * @return bool|int
+     * @return null|int
      */
     public function getUserId($identifier)
     {
@@ -65,6 +66,6 @@ class ListIssues extends AbstractLiteClass
                 return $identifier;
             }
         }
-
+        return null;
     }
 }

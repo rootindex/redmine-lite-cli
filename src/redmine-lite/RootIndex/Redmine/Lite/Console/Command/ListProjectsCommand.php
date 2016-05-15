@@ -1,4 +1,7 @@
 <?php
+/**
+ * Copyright (c) 2016 Francois Raubenheimer.
+ */
 
 namespace RootIndex\Redmine\Lite\Console\Command;
 
@@ -40,13 +43,11 @@ class ListProjectsCommand extends Command
         if (isset($projects['projects'])) {
             $tableProjects = [];
             $newKey = 0;
-            foreach ($projects['projects'] as $key => $project) {
-
-                if(isset($filter) && $filter != ''){
+            foreach ($projects['projects'] as $project) {
+                if (isset($filter) && $filter != '') {
                     // search projects @dirty
-                    if ( !preg_match("/$filter/", strtolower($project['name']))
-                        && !preg_match("/$filter/", strtolower($project['identifier']))
-                    ) {
+                    if (!preg_match("/$filter/", strtolower($project['name']))
+                        && !preg_match("/$filter/", strtolower($project['identifier']))) {
                         continue;
                     }
                 }
@@ -57,34 +58,34 @@ class ListProjectsCommand extends Command
                     'name' => $project['name'],
                 ];
 
-                if(isset($project['parent'])){
-                    $tableProjects[$newKey]['name'] = "{$tableProjects[$newKey]['name']} [<info>{$project['parent']['name']}</info>]";
+                if (isset($project['parent'])) {
+                    $tableProjects[$newKey]['name'] = "{$tableProjects[$newKey]['name']} "
+                        ."[<info>{$project['parent']['name']}</info>]";
                 }
 
-                if($showTrackers != 'false') {
+                if ($showTrackers != 'false') {
                     $trackers = [];
-                    foreach($project['trackers'] as $tracker){
+                    foreach ($project['trackers'] as $tracker) {
                         $trackers[] = $tracker['id'] . ':' . "<comment>{$tracker['name']}</comment>";
                     }
-                    if(!empty($trackers)){
+                    if (!empty($trackers)) {
                         $tableProjects[$newKey]['trackers'] = implode("\n", $trackers);
                     }
                 }
                 $newKey++;
             }
+
+
+            if (count($tableProjects)) {
+                $table = new Table($output);
+                $table
+                    ->setHeaders(array_keys($tableProjects['0']))
+                    ->setRows($tableProjects);
+                $table->render();
+            }
         }
 
-        $projects = $tableProjects;
-
-        if (!empty($projects)) {
-            $table = new Table($output);
-            $table
-                ->setHeaders(array_keys($projects['0']))
-                ->setRows($projects);
-            $table->render();
-        }
-
-        if(empty($projects)){
+        if (empty($projects)) {
             $output->writeln('No projects found with the specified search criteria');
         }
     }

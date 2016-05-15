@@ -1,8 +1,11 @@
 <?php
+/**
+ * Copyright (c) 2016 Francois Raubenheimer.
+ */
 
 namespace RootIndex\Redmine\Lite;
 
-use RootIndex\Redmine\Lite\Configuration;
+use RootIndex\Redmine\Lite\Configuration as Config;
 use RootIndex\Redmine\Lite\Console\Command\ConfigureCommand;
 
 /**
@@ -21,7 +24,7 @@ class Application extends \Symfony\Component\Console\Application
     {
         parent::__construct(self::NAME, self::VERSION);
 
-        $configuration = new Configuration;
+        $configuration = new Config;
 
         // Not configured lets configure it
         if (!$configuration->isConfigured()) {

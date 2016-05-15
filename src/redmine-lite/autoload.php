@@ -1,4 +1,7 @@
 <?php
+/**
+ * Copyright (c) 2016 Francois Raubenheimer.
+ */
 
 spl_autoload_register(function ($class) {
     /* All of the classes have names like "Redmine\Foo", so we need to

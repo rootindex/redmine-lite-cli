@@ -1,4 +1,7 @@
 <?php
+/**
+ * Copyright (c) 2016 Francois Raubenheimer.
+ */
 
 namespace RootIndex\Redmine\Lite\Console\Command;
 
@@ -6,7 +9,7 @@ use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Question\Question;
-use RootIndex\Redmine\Lite\ConfigureConfig as Configuration;
+use RootIndex\Redmine\Lite\Configuration;
 
 /**
  * Class ConfigureCommand
