@@ -2,6 +2,9 @@
 
 namespace RootIndex\Redmine\Lite;
 
+use RootIndex\Redmine\Lite\ConfigureConfig as Configuration;
+use RootIndex\Redmine\Lite\Console\Command\ConfigureCommand;
+
 /**
  * Class Application
  * @package RootIndex\Redmine\Lite
@@ -9,7 +12,7 @@ namespace RootIndex\Redmine\Lite;
 class Application extends \Symfony\Component\Console\Application
 {
     const NAME = 'Redmine Lite CLI Tools';
-    const VERSION = '1.2.5';
+    const VERSION = '1.3.0';
 
     /**
      * Application constructor.
@@ -17,7 +20,20 @@ class Application extends \Symfony\Component\Console\Application
     public function __construct()
     {
         parent::__construct(self::NAME, self::VERSION);
-        $this->addCommands($this->getCommands());
+
+        $configuration = new Configuration;
+
+        // Not configured lets configure it
+        if (!$configuration->isConfigured()) {
+            $this->add(new ConfigureCommand);
+            $this->setDefaultCommand('configure');
+        }
+
+        // all ready and good to go
+        if ($configuration->isConfigured()) {
+            $this->addCommands($this->getCommands());
+        }
+
         $this->run();
     }
 

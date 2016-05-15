@@ -6,7 +6,7 @@ namespace RootIndex\Redmine\Lite;
  * Class Config
  * @package RootIndex\Redmine\Lite
  */
-class Config
+class Config extends ConfigureConfig
 {
 
     /**
@@ -24,20 +24,11 @@ class Config
 
     /**
      * @return array
-     * @throws \Exception
      */
     protected function getConfig()
     {
-        $configPath = dirname(dirname(dirname(dirname(dirname(__DIR__)))))
-            . DIRECTORY_SEPARATOR . 'config' . DIRECTORY_SEPARATOR;
-
-        if (file_exists($configPath . 'config.ini')) {
-            return parse_ini_file($configPath . 'config.ini', true);
-        }else{
-            throw new \Exception(
-                'Please configure your config.ini file!'
-            );
-        }
+        $json = \file_get_contents($this->getConfigFile());
+        return \json_decode($json, true);
     }
 
     /**
@@ -46,30 +37,19 @@ class Config
      */
     public function getRedmineUrl()
     {
-        $host = '';
-        $port = '';
-        $proto = 'http://';
+        $server = '';
         $config = $this->config;
 
-        if(isset($config['redmine.host'])){
-            $host = $config['redmine.host'];
+        if (isset($config['server'])) {
+            $server = $config['server'];
         }
 
-        if(isset($config['redmine.port'])){
-            $port = in_array($config['redmine.port'], ['80', '443']) ? '' : ':' . $config['redmine.port'];
-        }
-
-        if(isset($config['redmine.proto'])){
-            $proto = $config['redmine.proto'] . '://';
-        }
-
-        if(!isset($host) && empty($host)){
+        if (!isset($server) && empty($server)) {
             throw new \Exception(
-                'Please configure your config.ini file!'
+                'Please re-configure setup run configure!'
             );
         }
-
-        return $proto . $host . $port;
+        return $server;
     }
 
     /**
@@ -77,7 +57,6 @@ class Config
      */
     public function getAccessToken()
     {
-        return isset($this->config['redmine.user.token']) ? (string)$this->config['redmine.user.token'] : '';
+        return isset($this->config['token']) ? (string)$this->config['token'] : '';
     }
-
 }
