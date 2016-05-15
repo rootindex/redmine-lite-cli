@@ -68,6 +68,7 @@ class ListIssuesCommand extends Command
                     'id' => "<comment>{$issue['id']}</comment>",
                     'project' => "[{$projectId}] " . substr($issue['project']['name'], 0, 10),
                     'name' => substr($issue['subject'], 0, 40),
+                    'status' => substr($issue['status']['name'], 0, 8),
                     'est.' => $estimate,
                 ];
             }

@@ -22,7 +22,7 @@ class ListIssues extends AbstractLiteClass
             'assigned_to_id' => $this->getUserId($arguments['user']),
             'project_id' => $this->getProjectId($arguments['project']),
             'limit' => $arguments['limit'],
-            'status' => $arguments['status']
+            'status_id' => $arguments['status']
         ];
 
         return $client->issue->all($args);
