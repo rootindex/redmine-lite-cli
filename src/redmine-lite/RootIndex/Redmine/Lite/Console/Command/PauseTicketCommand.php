@@ -12,10 +12,10 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
 /**
- * Class SubTicketsExampleCommand
+ * Class PauseTicketCommand
  * @package RootIndex\Redmine\Lite\Console\Command
  */
-class StartTicketCommand extends Command
+class PauseTicketCommand extends Command
 {
     /**
      * {@inheritdoc}
@@ -23,8 +23,8 @@ class StartTicketCommand extends Command
     protected function configure()
     {
         $this
-            ->setName('ticket:start')
-            ->setDescription('Start a ticket')
+            ->setName('ticket:pause')
+            ->setDescription('Pause a ticket')
             ->addArgument('ticket', InputArgument::REQUIRED, 'Redmine ticket number');
     }
 
@@ -37,8 +37,8 @@ class StartTicketCommand extends Command
 
         if ($ticket) {
             $startFactory = new TicketFunctions();
-            $startFactory->start($ticket);
-            $output->writeln("Ticket <comment>#{$ticket}</comment> started");
+            $startFactory->pause($ticket);
+            $output->writeln("Ticket <comment>#{$ticket}</comment> paused");
         }
     }
 }
