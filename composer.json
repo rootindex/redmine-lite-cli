@@ -18,5 +18,8 @@
   },
   "require": {
     "symfony/console": "^3.0"
+  },
+  "require-dev": {
+    "stecman/symfony-console-completion": "^0.7.0"
   }
 }

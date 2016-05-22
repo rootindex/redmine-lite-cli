@@ -108,13 +108,14 @@ abstract class AbstractLiteClass implements LiteClassInterface
             'description' => "This ticket was created to track time for #{$parent['id']}",
             'project_id' => $parent['project']['id'],
             'tracker_id' => $parent['tracker']['id'],
-            'status_id' => 5, // [Closed] by default as I don't want to get flooded
+            'status_id' => $parent['status']['id'], // [Closed] by default as I don't want to get flooded
             'priority_id' => $parent['priority']['id'],
             'parent_issue_id' => $parent['id'],
             'estimated_hours' => $estimate,
-            'done_ratio' => 100,
+            'done_ratio' => 0,
             'assigned_to_id' => $this->getCurrentUserId(),
-            'author_id' => $this->getCurrentUserId()
+            'author_id' => $this->getCurrentUserId(),
+            //'is_private' => true
         ];
 
         return $client->issue->create($newTicketData);
